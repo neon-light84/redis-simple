@@ -1,0 +1,19 @@
+{
+    "name": "pavel/redis-simple",
+    "description": "redis-simple",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "neon-light84",
+            "email": "goroshnikov.pavel@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-redis": "*"
+    }
+}
