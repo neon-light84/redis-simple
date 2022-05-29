@@ -1,0 +1,5 @@
+<?php
+require_once __DIR__ . '/main.php';
+
+if (!isset($argv)) exit("Запуск возможен только в консоли");
+\App\Api\Cli::execute($argv);
