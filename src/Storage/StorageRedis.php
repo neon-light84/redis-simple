@@ -11,7 +11,13 @@ class StorageRedis extends AbstractStorage
 
     protected function init()
     {
-        $this->redisConnection = Connections::getInstance()->getRedis();
+        if ($this->redisConnection = Connections::getInstance()->getRedis()) {
+            $this->_isSuccess = true;
+        }
+        else {
+            $this->_isSuccess = false;
+            $this->_errMessage = 'Ошибка подключения к базе REDIS';
+        }
     }
 
     public function create(string $key, string $value): bool

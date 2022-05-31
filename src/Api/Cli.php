@@ -18,23 +18,23 @@ HERE;
             exit(static::USAGE_TEXT);
         }
 
-        $redisHandle = new StorageRedis();
+        $storage = new StorageRedis();
 
         switch (strtolower($argv[1])) {
             case 'add':
                 if (!isset($argv[3])) { // недостаточно аргументов
                     exit(static::USAGE_TEXT);
                 }
-                echo ($redisHandle->create($argv[2], $argv[3])) ? 'Данные добавлены' : 'Что то пошло не так';
+                echo ($storage->create($argv[2], $argv[3])) ? 'Данные добавлены' : 'Что то пошло не так';
                 break;
             case 'delete':
                 if (!isset($argv[2])) { // недостаточно аргументов
                     exit(static::USAGE_TEXT);
                 }
-                echo ($redisHandle->delete($argv[2])) ? 'Данные удалены' : 'Что то пошло не так';
+                echo ($storage->delete($argv[2])) ? 'Данные удалены' : 'Что то пошло не так';
                 break;
             case 'show':
-                if ($data = $redisHandle->readAll()) {
+                if ($data = $storage->readAll()) {
                     print_r($data);
                 } else {
                     echo 'Нет данных';

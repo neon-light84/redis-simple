@@ -37,8 +37,8 @@ final class Connections
                 $redis->select($db['num_db']);
                 static::$connectionRedis = $redis;
             } catch (\Exception $e) {
-                print "Error!: " . $e->getMessage() . "<br/>";
-                die();
+//                print "Error!: " . $e->getMessage() . "<br/>";   // Если бы это было на бою, то залогировать
+                static::$connectionRedis = null;
             }
         }
         return static::$connectionRedis;
