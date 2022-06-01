@@ -15,11 +15,22 @@ class BaseController
     public function __construct()
     {
         $this->storage = new StorageRedis();
-        if (!$this->storage->isSuccess()) {
+        if ($this->storage->isSuccess()) {
+            $this->restStatus = true;
+        }
+        else {
             $this->restCode = 500;
             $this->restStatus = false;
             $this->restData = ['message' => $this->storage->erMessage()];
         }
+    }
+
+    /**
+     * Нужна для того, что бы роутер не дергал экшены контроллера, если Storage создался с ошибкой.
+     * @return bool
+     */
+    public function isSuccess() {
+        return $this->restStatus;
     }
 
     public function response(): string {
@@ -28,7 +39,7 @@ class BaseController
             'code' => $this->restCode,
             'data' => $this->restData ? $this->restData : [],  // на случай, если в каком то экшене, restData присвоится null / false
         ];
-        http_response_code($this->restCode+1);
+        http_response_code($this->restCode);
         header('Content-Type: application/json');
         return json_encode($responseArr);
     }

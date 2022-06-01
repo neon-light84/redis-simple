@@ -10,6 +10,8 @@ if (!Auth::isAuth()) {
         'code' => 500,
         'data' => ['message' => 'Не авторизован'],
     ];
+    http_response_code(500);
+    header('Content-Type: application/json');
     exit(json_encode($data));
 }
 

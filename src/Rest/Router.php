@@ -24,7 +24,7 @@ class Router
         if (!$isErr) {
             $pathArr = explode('/', $pathInfo);
             $route['resource'] = $pathArr[0];
-            if ($pathArr[1]) $route['key'] = $pathArr[1];
+            if (isset($pathArr[1])) $route['key'] = $pathArr[1];
 
             switch (strtoupper($_SERVER['REQUEST_METHOD'])) {
                 case 'GET':
@@ -69,8 +69,9 @@ class Router
             $methodName = 'index';
         }
         $controller =  new $controllerName();
-        $controller->$methodName(['key' => $route['key']]);
-
+        if ($controller->isSuccess()) {
+            $controller->$methodName(['key' => $route['key'] ?? '']);
+        }
         return $controller->response();
     }
 
