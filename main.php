@@ -6,5 +6,5 @@ if (defined ('AUTOLOAD') && AUTOLOAD=== 'composer') {
     require_once __DIR__ . '/vendor/autoload.php';
 }
 else {
-    require_once __DIR__ . '/simple_autoload.php';  // Пока не реализован
+    require_once __DIR__ . '/simple_autoload.php';
 }

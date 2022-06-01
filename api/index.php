@@ -1,7 +1,7 @@
 <?php
 require_once '../main.php';
 
-use \App\Rest\Router;
+use \App\Api\Rest\Router;
 use \App\Auth;
 
 if (!Auth::isAuth()) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rest;
+namespace App\Api\Rest;
 
 use \App\Storage\StorageRedis;
 

@@ -1,6 +1,28 @@
 <?php
-// TODO: реализовать простой автозагрузчик классов
+const SRC_DIR = __DIR__ . '/src';
 
-// а пока подключается composer-овский, что бы код не ломался.
-require_once __DIR__ . '/vendor/autoload.php';
+function scan_recursive($directory)
+{
+    // Привести каталог в канонизированный абсолютный путь
+    $directory = realpath($directory);
 
+    if ($d = opendir($directory)) {
+        while ($fname = readdir($d)) {
+            if ($fname == '.' || $fname == '..') {
+                continue;
+            }
+
+            $currentFileName = $directory . '/' . $fname;
+            if (is_dir($currentFileName)) {
+                scan_recursive($currentFileName);
+            }
+            else {
+                require_once $currentFileName;
+            }
+        }
+        closedir($d);
+    }
+}
+
+
+scan_recursive(SRC_DIR);

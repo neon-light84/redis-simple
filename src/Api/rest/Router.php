@@ -1,5 +1,5 @@
 <?php
-namespace App\Rest;
+namespace App\API\Rest;
 
 class Router
 {

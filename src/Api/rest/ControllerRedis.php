@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rest;
+namespace App\Api\Rest;
 
 class ControllerRedis extends BaseController
 {
